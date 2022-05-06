@@ -43,7 +43,7 @@ public class UserController {
         return "/admin/new";
     }
 
-    @PostMapping(value = "/admin/add")
+    @PostMapping(value = "/admin/new")
     public String addUser(@ModelAttribute User user) {
         userService.createUser(user);
         return "redirect:/admin";
@@ -55,13 +55,13 @@ public class UserController {
         return "/admin/edit";
     }
 
-    @PostMapping(value = "/admin/edit")
+    @PostMapping(value = "/admin/edit/{id}")
     public String updateUser(@ModelAttribute User user) {
         userService.createUser(user);
         return "redirect:/admin";
     }
 
-    @GetMapping(value = "/admin/{id}/delete")
+    @GetMapping(value = "/admin/delete/{id}")
     public String removeUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
