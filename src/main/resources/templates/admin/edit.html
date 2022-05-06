@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT</title>
+</head>
+<body>
+<br>
+<div align="center">
+    <h2>Edit User</h2>
+    <form th:action="@{/admin/edit}" th:object="${user}" method="post">
+        <table border="5" cellpadding="15">
+            <tr>
+                <td>ID:</td>
+                <td><input type="number" th:field="${user.id}" disabled/></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="${user.name}"/></td>
+            </tr>
+            <tr>
+                <td>Surname:</td>
+                <td><input type="text" th:field="${user.surname}"/></td>
+            </tr>
+            <tr>
+                <td>Department:</td>
+                <td><input type="text" th:field="${user.department}"/></td>
+            </tr>
+            <tr>
+                <td>Salary:</td>
+                <td><input type="text" th:field="${user.salary}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

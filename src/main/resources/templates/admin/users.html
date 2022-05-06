@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:security="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN</title>
+</head>
+<body>
+<br>
+<div th:align="center" class="tg">
+    <h2>User List</h2>
+    <table border="5" cellpadding="15">
+    <tr>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>DEPARTMENT</th>
+        <th>SALARY</th>
+        <th>DETAILS</th>
+        <th>EDIT</th>
+        <th><button><a href="/admin/new"><h3>NEW</h3></a></button></th>
+    </tr>
+        <tr th:each="users:${allUsers}">
+            <td th:text="${users.name}"></td>
+            <td th:text="${users.surname}"></td>
+            <td th:text="${users.department}"></td>
+            <td th:text="${users.salary}"></td>
+            <td><button><a th:href="@{/admin/{id}(id=${users.id})}">Details</a></button></td>
+            <td><button><a th:href="@{/admin/edit/{id}(id=${users.id})}">Edit</a></button></td>
+            <td><button><a th:href="@{/admin/{id}/delete(id=${users.id})}">Delete</a></button></td>
+        </tr>
+    </table>
+    <br><br>
+    <td><button><a th:href="@{/logout}">GO TO LOGOUT</a></button></td>
+
+<!--    <div sec:authorize="hasRole('ADMIN')"><td><button>GOGOGO</button></td></div>-->
+<!--<div><security:authorize access="hasRole('HR')"></security:authorize></div>-->
+
+</div>
+</body>
+</html>
