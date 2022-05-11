@@ -1,29 +1,30 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.spring.boot_security.demo.entity.User;
+import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
 
 @Controller
-public class UserController {
-    @Autowired
-    private UserService userService;
+@RequiredArgsConstructor
+public class MyController {
+
+    private final UserService userService;
+
+    @GetMapping("/user")
+    public String oneUser(Model model, Principal principal) {
+        model.addAttribute("oneUser", userService.loadUserByUsername(principal.getName()));
+        return "user";
+    }
 
     @GetMapping(value = "/listUser")
     public String listUser(Model model) {
         model.addAttribute("listUser", userService.getAllUsers());
         return "/user";
-    }
-
-    @GetMapping("/user")
-    public String oneUser(Model model, Principal principal) {
-        model.addAttribute("oneUser", userService.findByName(principal.getName()));
-        return "user";
     }
 
     @GetMapping("/admin/{id}")
@@ -44,8 +45,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/admin/new")
-    public String addUser(@ModelAttribute User user) {
-        userService.createUser(user);
+    public String addUser(@ModelAttribute User user, @RequestParam(value = "listRoles") String [] roles) {
+        userService.saveUser(user, roles);
         return "redirect:/admin";
     }
 
@@ -56,8 +57,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/admin/edit/{id}")
-    public String updateUser(@ModelAttribute User user) {
-        userService.createUser(user);
+    public String updateUser(@ModelAttribute User user, @RequestParam(value = "listRoles") String [] roles) {
+        userService.saveUser(user, roles);
         return "redirect:/admin";
     }
 

@@ -1,20 +1,24 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.entity.User;
+import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
-    @Autowired
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
 
     public List<User> getAllUsers() {
@@ -25,7 +29,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public void createUser(User user) {
+    public void saveUser(User user, String[] roles) {
+        user.setRoles(Arrays.stream(roles)
+                .map(roleRepository::findByName)
+                .collect(Collectors.toSet()));
         userRepository.save(user);
     }
 
@@ -34,13 +41,9 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public User findByName(String name) {
-        return userRepository.findByName(name);
-    }
 
     @Override
-    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByName(username);
+        return userRepository.findByEmail(username);
     }
 }
