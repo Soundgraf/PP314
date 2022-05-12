@@ -30,7 +30,7 @@
                 <td th:text="${oneUser.age}"></td>
                 <td th:text="${oneUser.email}"></td>
                 <td>
-                    <li th:each="role:${oneUser.getRoles()}" th:text="${oneUser.getName()}"></li>
+                    <li th:each="role:${oneUser.getRoles()}" th:text="${role.getName()}"></li>
                 </td>
             </tr>
             <tr th:each="users:${listUser}">
@@ -40,7 +40,7 @@
                 <td th:text="${users.age}"></td>
                 <td th:text="${users.email}"></td>
                 <td>
-                    <li th:each="roles:${users.getRoles()}" th:text="${users.getName()}"></li>
+                    <li th:each="roles:${users.getRoles()}" th:text="${roles.getName()}"></li>
                 </td>
             </tr>
             </tbody>
