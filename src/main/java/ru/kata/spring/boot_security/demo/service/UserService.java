@@ -11,7 +11,6 @@ import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +26,12 @@ public class UserService implements UserDetailsService {
         return new HashSet<>(roleRepository.findAll());
     }
 
-
-
     public void add(User user, Set<Role> roles) {
+        user.setRoles(roles);
+        userRepository.save(user);
+    }
+
+    public void change(User user,Set<Role> roles) {
         user.setRoles(roles);
         userRepository.save(user);
     }
@@ -38,20 +40,8 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
-
-    public void change(User user,Set<Role> roles) {
-        user.setRoles(roles);
-        userRepository.save(user);
-    }
-
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email);
-    }
-
-
-    public User getUser(Long id) {
-        return userRepository.findById(id).orElse(null);
     }
 }
