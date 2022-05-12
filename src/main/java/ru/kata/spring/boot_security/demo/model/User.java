@@ -36,7 +36,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {return getRoles();}
 
     @Override
-    public String getUsername() {return name;}
+    public String getUsername() {return email;}
 
     @Override
     public boolean isAccountNonExpired() {return true;}

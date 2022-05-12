@@ -17,6 +17,6 @@ public class UserController {
     @GetMapping("/user")
     public String pageForUser(Model model, Principal principal) {
         model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
-        return "user";
+        return "/user";
     }
 }

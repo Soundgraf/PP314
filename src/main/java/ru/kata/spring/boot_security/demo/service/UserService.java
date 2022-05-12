@@ -51,17 +51,7 @@ public class UserService implements UserDetailsService {
     }
 
 
-//    public User getUser(Long id) {
-//        return userRepository.findById(id).orElse(null);
-//    }
-//
-//    public void save(User user, String[] roles) {
-//        user.setRoles(Arrays.stream(roles)
-//                .map(roleRepository::findByName)
-//                .collect(Collectors.toList()));
-//        userRepository.save(user);
-//    }
-//    public User findByName(String name) {
-//        return userRepository.findByEmail(name);
-//    }
+    public User getUser(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 }
