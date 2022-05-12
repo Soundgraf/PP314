@@ -39,11 +39,11 @@ public class UserService implements UserDetailsService {
     }
 
 
-//    public void change(User user,Set<Role> roles) {
-//        user.setRoles(roles);
-//        userRepository.save(user);
-//    }
-//
+    public void change(User user,Set<Role> roles) {
+        user.setRoles(roles);
+        userRepository.save(user);
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

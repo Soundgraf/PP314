@@ -34,18 +34,15 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @PostMapping("/edit")
+    public String update(@ModelAttribute("user") User user, @RequestParam("listRoles") Set<Role> roles) {
+        userService.change(user, roles);
+        return "redirect:/admin";
+    }
 
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
         return "redirect:/admin";
     }
-
-    //    @PostMapping("/edit")
-//    public String update(@ModelAttribute("user") User user, @RequestParam("listRoles") ArrayList<Long> roles) {
-//        userService.change(user, userService.findRoles(roles));
-//        return "redirect:/admin";
-//    }
-//
-
 }
