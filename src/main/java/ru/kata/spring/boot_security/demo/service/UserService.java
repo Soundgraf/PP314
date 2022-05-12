@@ -10,10 +10,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,44 +23,13 @@ public class UserService implements UserDetailsService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
-
-
     public Set<Role> getAllRoles() {
         return new HashSet<>(roleRepository.findAll());
     }
 
-    public Role getRoleByName(String role) {
-        return roleRepository.findByName(role);
-    }
-
-    public void createRole(Role role) {
-        roleRepository.save(role);
-    }
-
-    public Role getRoleById(Long id) {
-        return roleRepository.findById(id).orElse(null);
-    }
-
-    public void updateRole(Role role) {
-        roleRepository.save(role);
-    }
-
-    public void deleteRole(Long id) {
-        roleRepository.delete(roleRepository.getById(id));
-    }
 
 
-
-
-
-    public void add(User user,String[] roles) {
-        user.setRoles(Arrays.stream(roles)
-                .map(roleRepository::findByName)
-                .collect(Collectors.toSet()));
-    }
-
-    public void change(User user,Set<Role> roles) {
+    public void add(User user, Set<Role> roles) {
         user.setRoles(roles);
         userRepository.save(user);
     }
@@ -72,11 +38,17 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
+
+//    public void change(User user,Set<Role> roles) {
+//        user.setRoles(roles);
+//        userRepository.save(user);
+//    }
+//
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email);
     }
-
 
 
 //    public User getUser(Long id) {

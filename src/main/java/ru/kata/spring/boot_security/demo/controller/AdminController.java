@@ -5,8 +5,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
+
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,21 +28,24 @@ public class AdminController {
         return "admin";
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id) {
+    @PostMapping("/new")
+    public String addUser(User user, @RequestParam("listRoles") Set<Role> roles) {
+        userService.add(user, roles);
+        return "redirect:/admin";
+    }
+
+
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
         return "redirect:/admin";
     }
 
-//    @PostMapping("/edit")
+    //    @PostMapping("/edit")
 //    public String update(@ModelAttribute("user") User user, @RequestParam("listRoles") ArrayList<Long> roles) {
 //        userService.change(user, userService.findRoles(roles));
 //        return "redirect:/admin";
 //    }
 //
-//    @PostMapping("/new")
-//    public String addUser(User user, @RequestParam("listRoles") ArrayList<Long> roles) {
-//        userService.add(user, userService.findRoles(roles));
-//        return "redirect:/admin";
-//    }
+
 }
