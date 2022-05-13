@@ -27,15 +27,15 @@ public class MyController {
     public String userList(Model model) {
         User user = (User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
-        model.addAttribute("allUsers", userService.getAllUsers());
+        model.addAttribute("allUsers", userService.listUsers());
         model.addAttribute("roles", userService.getAllRoles());
         model.addAttribute("userMain", user);
         return "/admin";
     }
 
-    @PostMapping("admin/new")
-    public String addUser(User user, @RequestParam("listRoles") Set<Role> roles) {
-        userService.add(user, roles);
+    @PostMapping("admin/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.delete(id);
         return "redirect:/admin";
     }
 
@@ -45,9 +45,9 @@ public class MyController {
         return "redirect:/admin";
     }
 
-    @PostMapping("admin/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        userService.delete(id);
+    @PostMapping("admin/new")
+    public String addUser(User user, @RequestParam("listRoles") Set<Role> roles) {
+        userService.add(user, roles);
         return "redirect:/admin";
     }
 }

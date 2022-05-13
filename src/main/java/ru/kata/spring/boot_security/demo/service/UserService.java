@@ -19,7 +19,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public List<User> getAllUsers() {
+    public List<User> listUsers() {
         return userRepository.findAll();
     }
     public Set<Role> getAllRoles() {
@@ -42,6 +42,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email);
+        return userRepository.findUserByEmail(email);
+    }
+
+    public User findUserById (Long id) {
+        return userRepository.getById(id);
     }
 }
