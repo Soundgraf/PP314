@@ -12,7 +12,7 @@ const renderUsers = (users) => {
                     <td>${user.roles.map(role => role.name === 'ROLE_USER' ? 'USER' : 'ADMIN')}</td> 
                     <td>${user.password}</td> 
               <td> 
-                   <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-primary" 
+                   <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info" 
                     data-toggle="modal" data-target="modal" id="edit-user" data-id="${user.id}">Edit</button> 
                </td> 
                <td> 
