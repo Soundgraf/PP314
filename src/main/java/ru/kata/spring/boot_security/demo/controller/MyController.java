@@ -27,27 +27,27 @@ public class MyController {
     public String userList(Model model) {
         User user = (User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
-        model.addAttribute("allUsers", userService.listUsers());
+        model.addAttribute("allUsers", userService.getAllUsers());
         model.addAttribute("roles", userService.getAllRoles());
         model.addAttribute("userMain", user);
         return "/admin";
     }
 
-    @PostMapping("admin/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        userService.delete(id);
+    @PostMapping("admin/new")
+    public String addUser(User user, @RequestParam("listRoles") Set<Role> roles) {
+        userService.saveOrUpdate(user, roles);
         return "redirect:/admin";
     }
 
     @PostMapping("admin/edit")
     public String update(@ModelAttribute("user") User user, @RequestParam("listRoles") Set<Role> roles) {
-        userService.change(user, roles);
+        userService.saveOrUpdate(user, roles);
         return "redirect:/admin";
     }
 
-    @PostMapping("admin/new")
-    public String addUser(User user, @RequestParam("listRoles") Set<Role> roles) {
-        userService.add(user, roles);
+    @DeleteMapping("admin/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.delete(id);
         return "redirect:/admin";
     }
 }

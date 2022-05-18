@@ -1,4 +1,15 @@
+//Navigation bar
+const url3 = 'http://localhost:8080/api/user'
+let loggedUserHeaderElem = document.querySelector('#navBarAdmin')
 
+fetch(url3)
+    .then(res => res.json())
+    .then(data => {
+        loggedUserHeaderElem.innerHTML = `<span class="align-middle font-weight-bold mr-1">${data.name}  </span></b> 
+                <span class="align-middle mr-1"> with roles:  </span> 
+                <span>  ${data.roles.map(role => role.name === 'ROLE_USER' ? 'USER' : 'ADMIN')}</span>`;
+    })
+//Table
 const renderUsers = (users) => {
     output = '',
         users.forEach(user => {
@@ -12,8 +23,8 @@ const renderUsers = (users) => {
                     <td>${user.roles.map(role => role.name === 'ROLE_USER' ? 'USER' : 'ADMIN')}</td> 
                     <td>${user.password}</td> 
               <td> 
-                   <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info" 
-                    data-toggle="modal" data-target="modal" id="edit-user" data-id="${user.id}">Edit</button> 
+                   <button type="button" class="btn btn-info" id="edit-user" data-action="edit" 
+                    data-id="${user.id}" data-toggle="modal" data-target="modal" data-userid="${user.id}" >Edit</button> 
                </td> 
                <td> 
                    <button type="button" class="btn btn-danger" id="delete-user" data-action="delete" 
@@ -50,12 +61,12 @@ fetch(url, {mode: 'cors'})
 // ADD user
 
 const addUserForm = document.querySelector('#addUser')
-const addName = document.getElementById('name3')
-const addSurname = document.getElementById('surname3')
-const addAge = document.getElementById('age3')
-const addEmail = document.getElementById('email3')
-const addPassword = document.getElementById('password3')
-const addRoles = document.getElementById('roles3')
+const addName = document.getElementById('name1')
+const addSurname = document.getElementById('surname1')
+const addAge = document.getElementById('age1')
+const addEmail = document.getElementById('email1')
+const addPassword = document.getElementById('password1')
+const addRoles = document.getElementById('roles1')
 
 addUserForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -82,7 +93,7 @@ addUserForm.addEventListener('submit', (e) => {
             renderUsers(users);
         })
         .then(res =>{
-            document.getElementById('ta_samaya_knopka').click()
+            document.getElementById('add_new_user').click()
         })
 })
 
@@ -98,13 +109,13 @@ const on = (element, event, selector, handler) => {
 // EDIT user
 on(document, 'click', '#edit-user', e => {
     const userInfo = e.target.parentNode.parentNode
-    document.getElementById('id0').value = userInfo.children[0].innerHTML
-    document.getElementById('name0').value = userInfo.children[1].innerHTML
-    document.getElementById('surname0').value = userInfo.children[2].innerHTML
-    document.getElementById('age0').value = userInfo.children[3].innerHTML
-    document.getElementById('email0').value = userInfo.children[4].innerHTML
-    document.getElementById('roles0').value = userInfo.children[5].innerHTML
-    document.getElementById('password0').value = userInfo.children[6].innerHTML
+    document.getElementById('id2').value = userInfo.children[0].innerHTML
+    document.getElementById('name2').value = userInfo.children[1].innerHTML
+    document.getElementById('surname2').value = userInfo.children[2].innerHTML
+    document.getElementById('age2').value = userInfo.children[3].innerHTML
+    document.getElementById('email2').value = userInfo.children[4].innerHTML
+    document.getElementById('roles2').value = userInfo.children[5].innerHTML
+    document.getElementById('password2').value = userInfo.children[6].innerHTML
 
     $("#modalEdit").modal("show")
 })
@@ -118,14 +129,14 @@ editUserForm.addEventListener('submit', (e) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            id: document.getElementById('id0').value,
-            name: document.getElementById('name0').value,
-            surname: document.getElementById('surname0').value,
-            age: document.getElementById('age0').value,
-            email: document.getElementById('email0').value,
-            password: document.getElementById('password0').value,
+            id: document.getElementById('id2').value,
+            name: document.getElementById('name2').value,
+            surname: document.getElementById('surname2').value,
+            age: document.getElementById('age2').value,
+            email: document.getElementById('email2').value,
+            password: document.getElementById('password2').value,
             roles: [
-                document.getElementById('roles0').value
+                document.getElementById('roles2').value
             ]
         })
     })
@@ -157,24 +168,12 @@ on(document, 'click', '#delete-user', e => {
     const fila2 = e.target.parentNode.parentNode
     currentUserId = fila2.children[0].innerHTML
 
-    document.getElementById('id2').value = fila2.children[0].innerHTML
-    document.getElementById('name2').value = fila2.children[1].innerHTML
-    document.getElementById('surname2').value = fila2.children[2].innerHTML
-    document.getElementById('age2').value = fila2.children[3].innerHTML
-    document.getElementById('email2').value = fila2.children[4].innerHTML
-    document.getElementById('roles2').value = fila2.children[5].innerHTML
+    document.getElementById('id3').value = fila2.children[0].innerHTML
+    document.getElementById('name3').value = fila2.children[1].innerHTML
+    document.getElementById('surname3').value = fila2.children[2].innerHTML
+    document.getElementById('age3').value = fila2.children[3].innerHTML
+    document.getElementById('email3').value = fila2.children[4].innerHTML
+    document.getElementById('roles3').value = fila2.children[5].innerHTML
 
     $("#modalDelete").modal("show")
 })
-
-//Navigation bar
-const url3 = 'http://localhost:8080/api/user'
-let loggedUserHeaderElem = document.querySelector('#navBarAdmin')
-
-fetch(url3)
-    .then(res => res.json())
-    .then(data => {
-        loggedUserHeaderElem.innerHTML = `<span class="align-middle font-weight-bold mr-1">${data.name}  </span></b> 
-                <span class="align-middle mr-1"> with roles:  </span> 
-                <span>  ${data.roles.map(role => role.name === 'ROLE_USER' ? 'USER' : 'ADMIN')}</span>`;
-    })

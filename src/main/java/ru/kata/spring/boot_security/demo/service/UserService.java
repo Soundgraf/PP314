@@ -19,19 +19,14 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public List<User> listUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
     public Set<Role> getAllRoles() {
         return new HashSet<>(roleRepository.findAll());
     }
 
-    public void add(User user, Set<Role> roles) {
-        user.setRoles(roles);
-        userRepository.save(user);
-    }
-
-    public void change(User user,Set<Role> roles) {
+    public void saveOrUpdate(User user, Set<Role> roles) {
         user.setRoles(roles);
         userRepository.save(user);
     }

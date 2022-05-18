@@ -23,7 +23,7 @@ public class MyRestController {
 
     @GetMapping("/api/admin")
     public List<User> userList(){
-        return userService.listUsers();
+        return userService.getAllUsers();
     }
 
     @GetMapping("/api/admin/{id}")
@@ -33,19 +33,19 @@ public class MyRestController {
 
     @PostMapping("/api/admin")
     public List<User> addUser(@RequestBody User user){
-        userService.add(user, user.getRoles());
-        return userService.listUsers();
+        userService.saveOrUpdate(user, user.getRoles());
+        return userService.getAllUsers();
     }
 
     @PutMapping("/api/admin")
-    public User update(@RequestBody User user){
-        userService.change(user, user.getRoles());
+    public User updateUser(@RequestBody User user){
+        userService.saveOrUpdate(user, user.getRoles());
         return user;
     }
 
     @DeleteMapping("/api/admin/{id}")
     public List<User> deleteUser(@PathVariable Long id) {
         userService.delete(id);
-        return userService.listUsers();
+        return userService.getAllUsers();
     }
 }
