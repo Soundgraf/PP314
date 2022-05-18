@@ -17,7 +17,7 @@ public class MyRestController {
 
     @GetMapping("/api/user")
     public User getUserByUsername (Principal principal) {
-        User user = userRepository.findUserByEmail(principal.getName());
+        User user = userService.findUserByEmail(principal.getName());
         return user;
     }
 
