@@ -42,7 +42,7 @@
             <div class="nav flex-column nav-pills pt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" href="/admin" sec:authorize="hasRole('ROLE_ADMIN')"
                    aria-controls="v-pills-home" aria-selected="true">Admin</a>
-                <a class="nav-link" href="/user" sec:authorize="(hasAnyRole('ROLE_USER','ROLE_ADMIN'))"
+                <a class="nav-link" href="/user" sec:authorize="(hasAnyRole('ROLE_ADMIN','ROLE_USER'))"
                    role="tab"
                    aria-controls="v-pills-profile" aria-selected="false">User</a>
             </div>
@@ -102,19 +102,16 @@
                                        required/>
 
                                 <label for="surname1"><b>Surname</b></label>
-                                <input th:type="text" class="form-control" id="surname1"
-                                       required/>
+                                <input th:type="text" class="form-control" id="surname1"/>
 
                                 <label for="age1"><b>Age</b></label>
-                                <input th:type="number" class="form-control" id="age1"
-                                       required/>
+                                <input th:type="number" class="form-control" id="age1"/>
 
                                 <label for="email1"><b>Email</b></label>
-                                <input th:type="text" class="form-control" id="email1"/>
+                                <input th:type="email" class="form-control" id="email1"/>
 
                                 <label for="password1"><b>Password</b></label>
-                                <input th:type="password" class="form-control" id="password1"
-                                       required/>
+                                <input th:type="password" class="form-control" id="password1"/>
 
                                 <label for="roles1"><b>Role</b></label>
                                 <select multiple class="form-control form-control-sm" id="roles1"
@@ -139,10 +136,8 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel7">Edit
-                                            user</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -155,28 +150,28 @@
 
                                         <div class="form-group">
                                             <label for="name2" class="col-form-label"><b>Name:</b></label>
-                                            <input type="text" class="form-control" id="name2"
+                                            <input th:type="text" class="form-control" id="name2"
                                                    th:name="name">
                                         </div>
                                         <div class="form-group">
                                             <label for="surname2" class="col-form-label"><b>Surname:</b></label>
-                                            <input type="text" class="form-control" id="surname2"
+                                            <input th:type="text" class="form-control" id="surname2"
                                                    th:name="surname">
                                         </div>
                                         <div class="form-group">
                                             <label for="age2" class="col-form-label"><b>Age:</b></label>
-                                            <input type="number" class="form-control" id="age2"
+                                            <input th:type="number" class="form-control" id="age2"
                                                    th:name="age">
                                         </div>
                                         <div class="form-group">
                                             <label for="email2"
                                                    class="col-form-label"><b>Email:</b></label>
-                                            <input type="text" class="form-control" id="email2"
+                                            <input th:type="email" class="form-control" id="email2"
                                                    th:name="email">
                                         </div>
                                         <div class="form-group">
                                             <label for="password2" class="col-form-label"><b>Password:</b></label>
-                                            <input type="password" class="form-control" id="password2"
+                                            <input th:type="password" class="form-control" id="password2"
                                                    th:name="password">
                                         </div>
 
@@ -209,8 +204,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="deleteModalLabel">Delete user</h5>
-                                    <button type="button" class="close"
-                                            data-dismiss="modal"></button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
                                 <form>
                                     <div class="modal-body text-center">
@@ -224,35 +220,34 @@
 
                                         <div class="form-group">
                                             <label for="name3" class="col-form-label"><b>Name:</b></label>
-                                            <input type="text" class="form-control" id="name3"
+                                            <input th:type="text" class="form-control" id="name3"
                                                    th:name="name" disabled/>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="surname3" class="col-form-label"><b>Surname:</b></label>
-                                            <input type="text" class="form-control" id="surname3"
+                                            <input th:type="text" class="form-control" id="surname3"
                                                    th:name="surname" disabled/>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="age3" class="col-form-label"><b>Age:</b></label>
-                                            <input type="number" class="form-control" id="age3"
+                                            <input th:type="number" class="form-control" id="age3"
                                                    th:name="age" disabled/>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="email3"
                                                    class="col-form-label"><b>Email:</b></label>
-                                            <input type="text" class="form-control" id="email3"
+                                            <input th:type="email" class="form-control" id="email3"
                                                    th:name="email" disabled/>
                                         </div>
 
                                         <label for="roles3"><b>Role</b></label>
                                         <select multiple class="form-control form-control-sm"
-                                                id="roles3" size="2" required
-                                                disabled/>
+                                                id="roles3" size="2" required disabled>
                                         <option value="1">ADMIN</option>
-                                        <option value="2" selected>USER</option>
+                                        <option value="2">USER</option>
                                         </select>
 
 
@@ -268,8 +263,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
