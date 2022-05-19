@@ -34,7 +34,6 @@
     ></a>
 </nav>
 
-
 <div class="container-fluid">
 
     <div class="row">
@@ -90,99 +89,64 @@
                         </div>
                     </div>
 
-
                     <!-- ADD user panel -->
                     <div class="tab-pane fade" id="addUser">
                         <h4>Add new User</h4>
                         <div class="col-md bg-white border">
                             <form align="center" class="offset-md-4 col-md-3 mt-4 mb-4" th:align="center">
 
-                                <label for="name1"><b>Name</b></label>
-                                <input th:type="text" class="form-control" id="name1"
-                                       required/>
-
-                                <label for="surname1"><b>Surname</b></label>
-                                <input th:type="text" class="form-control" id="surname1"/>
-
-                                <label for="age1"><b>Age</b></label>
-                                <input th:type="number" class="form-control" id="age1"/>
-
-                                <label for="email1"><b>Email</b></label>
-                                <input th:type="email" class="form-control" id="email1"/>
-
-                                <label for="password1"><b>Password</b></label>
-                                <input th:type="password" class="form-control" id="password1"/>
-
-                                <label for="roles1"><b>Role</b></label>
-                                <select multiple class="form-control form-control-sm" id="roles1"
-                                        size="2" required>
+                                <label for="name2" class="col-form-label"><b>Name:</b></label>
+                                <input th:type="text" class="form-control" id="name1" th:name="name"/>
+                                <label for="surname2" class="col-form-label"><b>Surname:</b></label>
+                                <input th:type="text" class="form-control" id="surname1" th:name="surname"/>
+                                <label for="age2" class="col-form-label"><b>Age:</b></label>
+                                <input th:type="number" class="form-control" id="age1" th:name="age"/>
+                                <label for="email2" class="col-form-label"><b>Email:</b></label>
+                                <input th:type="email" class="form-control" id="email1" th:name="email"/>
+                                <label for="password2" class="col-form-label"><b>Password:</b></label>
+                                <input th:type="password" class="form-control" id="password1" th:name="password"/>
+                                <label for="roles2"><b>Role</b></label>
+                                <select multiple class="form-control form-control-sm"
+                                        id="roles1" size="2" required>
                                     <option value="1">ADMIN</option>
                                     <option value="2" selected>USER</option>
                                 </select>
                                 <br>
-                                <button th:type="submit" class="btn btn-success" value="Add new user" id="add">
-                                    Add new user
+                                <button th:type="submit" class="btn btn-success" value="Add new user" id="add">Add
                                 </button>
                             </form>
                         </div>
                     </div>
 
-
                     <!-- modal window EDIT -->
-                    <div class="modal fade" id="modalEdit" tabindex="-1"
-                         role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <form>
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                    <div class="modal fade" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modalEdit">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form>
                                     <div class="modal-body text-center">
-
-                                        <div class="form-group">
-                                            <input th:type="hidden" class="form-control" id="id2"
-                                                   th:name="id">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="name2" class="col-form-label"><b>Name:</b></label>
-                                            <input th:type="text" class="form-control" id="name2"
-                                                   th:name="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="surname2" class="col-form-label"><b>Surname:</b></label>
-                                            <input th:type="text" class="form-control" id="surname2"
-                                                   th:name="surname">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="age2" class="col-form-label"><b>Age:</b></label>
-                                            <input th:type="number" class="form-control" id="age2"
-                                                   th:name="age">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email2"
-                                                   class="col-form-label"><b>Email:</b></label>
-                                            <input th:type="email" class="form-control" id="email2"
-                                                   th:name="email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password2" class="col-form-label"><b>Password:</b></label>
-                                            <input th:type="password" class="form-control" id="password2"
-                                                   th:name="password">
-                                        </div>
-
+                                        <input th:type="hidden" class="form-control" id="id2" th:name="id">
+                                        <label for="name2" class="col-form-label"><b>Name:</b></label>
+                                        <input th:type="text" class="form-control" id="name2" th:name="name"/>
+                                        <label for="surname2" class="col-form-label"><b>Surname:</b></label>
+                                        <input th:type="text" class="form-control" id="surname2" th:name="surname"/>
+                                        <label for="age2" class="col-form-label"><b>Age:</b></label>
+                                        <input th:type="number" class="form-control" id="age2" th:name="age"/>
+                                        <label for="email2" class="col-form-label"><b>Email:</b></label>
+                                        <input th:type="email" class="form-control" id="email2" th:name="email"/>
+                                        <label for="password2" class="col-form-label"><b>Password:</b></label>
+                                        <input th:type="password" class="form-control" id="password2" th:name="password"/>
                                         <label for="roles2"><b>Role</b></label>
                                         <select multiple class="form-control form-control-sm"
                                                 id="roles2" size="2" required>
                                             <option value="1">ADMIN</option>
                                             <option value="2" selected>USER</option>
                                         </select>
-
-
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -190,16 +154,13 @@
                                         </button>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
-
                     <!-- modal window DELETE -->
-                    <div class="modal fade"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true"
-                         id="modalDelete">
+                    <div class="modal fade" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modalDelete">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -210,47 +171,22 @@
                                 </div>
                                 <form>
                                     <div class="modal-body text-center">
-
-                                        <div class="form-group">
-                                            <label for="id3"
-                                                   class="col-form-label"><b>ID:</b></label>
-                                            <input th:type="text" class="form-control" id="id3"
-                                                   th:name="id" disabled/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="name3" class="col-form-label"><b>Name:</b></label>
-                                            <input th:type="text" class="form-control" id="name3"
-                                                   th:name="name" disabled/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="surname3" class="col-form-label"><b>Surname:</b></label>
-                                            <input th:type="text" class="form-control" id="surname3"
-                                                   th:name="surname" disabled/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="age3" class="col-form-label"><b>Age:</b></label>
-                                            <input th:type="number" class="form-control" id="age3"
-                                                   th:name="age" disabled/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="email3"
-                                                   class="col-form-label"><b>Email:</b></label>
-                                            <input th:type="email" class="form-control" id="email3"
-                                                   th:name="email" disabled/>
-                                        </div>
-
+                                        <label for="id3" class="col-form-label"><b>ID:</b></label>
+                                        <input th:type="text" class="form-control" id="id3" th:name="id" disabled/>
+                                        <label for="name3" class="col-form-label"><b>Name:</b></label>
+                                        <input th:type="text" class="form-control" id="name3" th:name="name" disabled/>
+                                        <label for="surname3" class="col-form-label"><b>Surname:</b></label>
+                                        <input th:type="text" class="form-control" id="surname3" th:name="surname" disabled/>
+                                        <label for="age3" class="col-form-label"><b>Age:</b></label>
+                                        <input th:type="number" class="form-control" id="age3" th:name="age" disabled/>
+                                        <label for="email3" class="col-form-label"><b>Email:</b></label>
+                                        <input th:type="email" class="form-control" id="email3" th:name="email" disabled/>
                                         <label for="roles3"><b>Role</b></label>
-                                        <select multiple class="form-control form-control-sm"
-                                                id="roles3" size="2" required disabled>
-                                        <option value="1">ADMIN</option>
-                                        <option value="2">USER</option>
+                                        <select multiple class="form-control form-control-sm" id="roles3" size="2"
+                                                required disabled>
+                                            <option value="1">ADMIN</option>
+                                            <option value="2">USER</option>
                                         </select>
-
-
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close
