@@ -5,11 +5,13 @@ let loggedUserHeaderElem = document.querySelector('#navBarAdmin')
 fetch(url3)
     .then(res => res.json())
     .then(data => {
-        loggedUserHeaderElem.innerHTML = `<span class="align-middle font-weight-bold mr-1">${data.name}  </span></b> 
+        loggedUserHeaderElem.innerHTML =
+            `<span class="align-middle font-weight-bold mr-1">${data.name}  </span></b> 
                 <span class="align-middle mr-1"> with roles:  </span> 
-                <span>  ${data.roles.map(role => role.name === 'ROLE_USER' ? 'USER' : 'ADMIN')}</span>`;
+                <span>  ${data.roles.map(role => role.name === 'ROLE_ADMIN' ? ' ADMIN' : ' USER')}</span>`;
     })
 //Table
+let output = ""
 const renderUsers = (users) => {
     output = '',
         users.forEach(user => {
@@ -20,7 +22,7 @@ const renderUsers = (users) => {
                     <td>${user.surname}</td> 
                     <td>${user.age}</td> 
                     <td>${user.email}</td> 
-                    <td>${user.roles.map(role => role.name === 'ROLE_USER' ? 'USER' : 'ADMIN')}</td> 
+                    <td>${user.roles.map(role => role.name === 'ROLE_ADMIN' ? ' ADMIN' : ' USER')}</td> 
                     <td>${user.password}</td> 
               <td> 
                    <button type="button" class="btn btn-info" id="edit-user" data-action="edit" 
@@ -55,7 +57,7 @@ fetch(url, {mode: 'cors'})
     .then(res => res.json())
     .then(data => {
         users = data;
-        renderUsers(data)
+        renderUsers(users)
     })
 
 // ADD user
@@ -72,7 +74,7 @@ addUserForm.addEventListener('submit', (e) => {
     e.preventDefault();
     fetch(url, {
         method: 'POST',
-       // redirect: 'manual',
+        // redirect: 'manual',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -92,7 +94,7 @@ addUserForm.addEventListener('submit', (e) => {
             users = data;
             renderUsers(users);
         })
-        .then(res =>{
+        .then(res => {
             document.getElementById('add_new_user').click()
         })
 })

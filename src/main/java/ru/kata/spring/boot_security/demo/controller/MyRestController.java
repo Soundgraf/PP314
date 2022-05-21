@@ -1,6 +1,8 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
@@ -13,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MyRestController {
     private final UserService userService;
-    private final UserRepository userRepository;
 
     @GetMapping("/api/user")
     public User getUserByUsername (Principal principal) {
@@ -26,20 +27,20 @@ public class MyRestController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/api/admin/{id}")
-    public User showUser(@PathVariable Long id) {
-        return userService.findUserById(id);
-    }
+//    @GetMapping("/api/admin/{id}")
+//    public User showUser(@PathVariable Long id) {
+//        return userService.findUserById(id);
+//    }
 
     @PostMapping("/api/admin")
     public List<User> addUser(@RequestBody User user){
-        userService.saveOrUpdate(user, user.getRoles());
+        userService.saveOrUpdate(user);
         return userService.getAllUsers();
     }
 
     @PutMapping("/api/admin")
     public User updateUser(@RequestBody User user){
-        userService.saveOrUpdate(user, user.getRoles());
+        userService.saveOrUpdate(user);
         return user;
     }
 

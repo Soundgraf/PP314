@@ -17,37 +17,19 @@ import java.util.Set;
 public class MyController {
     private final UserService userService;
 
-    @GetMapping("/user")
-    public String pageForUser(Model model, Principal principal) {
-        model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
-        return "/user";
-    }
+//    @GetMapping("/user")
+//    public String pageForUser(Model model, Principal principal) {
+//        model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
+//        return "/user";
+//    }
 
     @GetMapping("/admin")
     public String userList(Model model) {
-        User user = (User) SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
-        model.addAttribute("allUsers", userService.getAllUsers());
+//        User user = (User) SecurityContextHolder.getContext()
+//                .getAuthentication().getPrincipal();
+//        model.addAttribute("allUsers", userService.getAllUsers());
         model.addAttribute("roles", userService.getAllRoles());
-        model.addAttribute("userMain", user);
+//        model.addAttribute("userMain", user);
         return "/admin";
-    }
-
-    @PostMapping("admin/new")
-    public String addUser(User user, @RequestParam("listRoles") Set<Role> roles) {
-        userService.saveOrUpdate(user, roles);
-        return "redirect:/admin";
-    }
-
-    @PostMapping("admin/edit")
-    public String update(@ModelAttribute("user") User user, @RequestParam("listRoles") Set<Role> roles) {
-        userService.saveOrUpdate(user, roles);
-        return "redirect:/admin";
-    }
-
-    @DeleteMapping("admin/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        userService.delete(id);
-        return "redirect:/admin";
     }
 }
