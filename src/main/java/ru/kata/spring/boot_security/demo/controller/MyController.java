@@ -17,19 +17,8 @@ import java.util.Set;
 public class MyController {
     private final UserService userService;
 
-//    @GetMapping("/user")
-//    public String pageForUser(Model model, Principal principal) {
-//        model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
-//        return "/user";
-//    }
-
     @GetMapping("/admin")
     public String userList(Model model) {
-//        User user = (User) SecurityContextHolder.getContext()
-//                .getAuthentication().getPrincipal();
-//        model.addAttribute("allUsers", userService.getAllUsers());
-        model.addAttribute("roles", userService.getAllRoles());
-//        model.addAttribute("userMain", user);
         return "/admin";
     }
 }

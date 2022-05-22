@@ -26,12 +26,6 @@ public class MyRestController {
     public List<User> userList(){
         return userService.getAllUsers();
     }
-
-//    @GetMapping("/api/admin/{id}")
-//    public User showUser(@PathVariable Long id) {
-//        return userService.findUserById(id);
-//    }
-
     @PostMapping("/api/admin")
     public List<User> addUser(@RequestBody User user){
         userService.saveOrUpdate(user);
