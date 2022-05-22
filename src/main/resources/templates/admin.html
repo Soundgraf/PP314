@@ -9,9 +9,7 @@
 </head>
 <body>
 <style>
-    table tr > *:nth-child(7) {
-        display: none;
-    }
+    table tr > *:nth-child(7) {display: none;}
 </style>
 
 <!-- navigation bar -->
@@ -41,7 +39,7 @@
             <div class="nav flex-column nav-pills pt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" href="/admin" sec:authorize="hasRole('ROLE_ADMIN')"
                    aria-controls="v-pills-home" aria-selected="true">Admin</a>
-                <a class="nav-link" href="/user" sec:authorize="(hasAnyRole('ROLE_ADMIN','ROLE_USER'))"
+                <a class="nav-link" href="/user" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
                    role="tab"
                    aria-controls="v-pills-profile" aria-selected="false">User</a>
             </div>
@@ -70,17 +68,6 @@
                             </div>
                             <div class="card-body">
                                 <table class="table table-hover">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Surname</th>
-                                        <th>Age</th>
-                                        <th>Email</th>
-                                        <th>Roles</th>
-                                        <th>Password</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
                                     <tbody id="allUsers">
                                     <!-- admin.js -->
                                     </tbody>
@@ -109,7 +96,7 @@
                                 <select multiple class="form-control form-control-sm"
                                         id="roles1" size="2" required>
                                     <option value="1">ADMIN</option>
-                                    <option value="2" selected>USER</option>
+                                    <option value="2" selected="selected">USER</option>
                                 </select>
                                 <br>
                                 <button th:type="submit" class="btn btn-success" value="Add new user" id="add">Add
@@ -149,9 +136,7 @@
                                         </select>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close
-                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
                                 </form>

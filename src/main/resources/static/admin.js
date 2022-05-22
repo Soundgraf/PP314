@@ -11,6 +11,7 @@ fetch(url3)
                 <span>  ${data.roles.map(role => role.name === 'ROLE_ADMIN' ? ' ADMIN' : ' USER')}</span>`;
     })
 //Table
+let users = [];
 let output = ""
 const renderUsers = (users) => {
     output = '',
@@ -22,7 +23,9 @@ const renderUsers = (users) => {
                     <td>${user.surname}</td> 
                     <td>${user.age}</td> 
                     <td>${user.email}</td> 
-                    <td>${user.roles.map(role => role.name === 'ROLE_ADMIN' ? ' ADMIN' : ' USER')}</td> 
+                    <td>${user.roles.map(role => role.name
+            === 'ROLE_ADMIN' ? ' ADMIN' : ' USER'
+            )}</td> 
                     <td>${user.password}</td> 
               <td> 
                    <button type="button" class="btn btn-info" id="edit-user" data-action="edit" 
@@ -36,15 +39,14 @@ const renderUsers = (users) => {
         })
     info.innerHTML = output;
 }
-let users = [];
 const updateUser = (user) => {
-    const foundIndex = users.findIndex(x => x.id == user.id);
+    const foundIndex = users.findIndex(x => x.id === user.id);
     users[foundIndex] = user;
     renderUsers(users);
     console.log('users');
 }
 const removeUser = (id) => {
-    users = users.filter(user => user.id != id);
+    users = users.filter(user => user.id !== id);
     console.log(users)
     renderUsers(users);
 }
@@ -116,8 +118,8 @@ on(document, 'click', '#edit-user', e => {
     document.getElementById('surname2').value = userInfo.children[2].innerHTML
     document.getElementById('age2').value = userInfo.children[3].innerHTML
     document.getElementById('email2').value = userInfo.children[4].innerHTML
-    document.getElementById('roles2').value = userInfo.children[5].innerHTML
-    document.getElementById('password2').value = userInfo.children[6].innerHTML
+    document.getElementById('password2').value = userInfo.children[5].innerHTML
+    document.getElementById('roles2').value = userInfo.children[6].innerHTML
 
     $("#modalEdit").modal("show")
 })
