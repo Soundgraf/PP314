@@ -1,11 +1,8 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.repository.UserRepository;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
@@ -26,6 +23,7 @@ public class MyRestController {
     public List<User> userList(){
         return userService.getAllUsers();
     }
+
     @PostMapping("/api/admin")
     public List<User> addUser(@RequestBody User user){
         userService.saveOrUpdate(user);

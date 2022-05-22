@@ -17,7 +17,7 @@ function getAllUsers() {
                         <td>${user.surname}</td>
                         <td>${user.age}</td>
                         <td>${user.email}</td>
-                        <td>${user.roles.map(role => role.name === 'ROLE_USER' ? 'USER' : 'ADMIN')}</td>
+                        <td>${user.roles.map(role => role.name === 'ROLE_USER' ? ' USER' : ' ADMIN')}</td>
 
                   <td>
                        <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info"
