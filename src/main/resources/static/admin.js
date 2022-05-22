@@ -5,8 +5,7 @@ let loggedUserHeaderElem = document.querySelector('#navBarAdmin')
 fetch(url3)
     .then(res => res.json())
     .then(data => {
-        loggedUserHeaderElem.innerHTML =
-            `<span class="align-middle font-weight-bold mr-1">${data.name}  </span></b> 
+        loggedUserHeaderElem.innerHTML = `<span class="align-middle font-weight-bold mr-1">${data.name}  </span></b> 
                 <span class="align-middle mr-1"> with roles:  </span> 
                 <span>  ${data.roles.map(role => role.name === 'ROLE_ADMIN' ? ' ADMIN' : ' USER')}</span>`;
     })
@@ -23,9 +22,7 @@ const renderUsers = (users) => {
                     <td>${user.surname}</td> 
                     <td>${user.age}</td> 
                     <td>${user.email}</td> 
-                    <td>${user.roles.map(role => role.name
-            === 'ROLE_ADMIN' ? ' ADMIN' : ' USER'
-            )}</td> 
+                    <td>${user.roles.map(role => role.name === 'ROLE_ADMIN' ? ' ADMIN' : ' USER')}</td> 
                     <td>${user.password}</td> 
               <td> 
                    <button type="button" class="btn btn-info" id="edit-user" data-action="edit" 
@@ -40,13 +37,13 @@ const renderUsers = (users) => {
     info.innerHTML = output;
 }
 const updateUser = (user) => {
-    const foundIndex = users.findIndex(x => x.id === user.id);
+    const foundIndex = users.findIndex(x => x.id == user.id);
     users[foundIndex] = user;
     renderUsers(users);
     console.log('users');
 }
 const removeUser = (id) => {
-    users = users.filter(user => user.id !== id);
+    users = users.filter(user => user.id != id);
     console.log(users)
     renderUsers(users);
 }
