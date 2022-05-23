@@ -4,16 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.spring.boot_security.demo.service.UserService;
-
 
 @Controller
 @RequiredArgsConstructor
 public class MyController {
-    private final UserService userService;
+
+    @GetMapping("/login")
+    public String login() {return "/login";}
 
     @GetMapping("/admin")
-    public String userList(Model model) {
-        return "/admin";
-    }
+    public String userList(Model model) {return "/admin";}
 }
